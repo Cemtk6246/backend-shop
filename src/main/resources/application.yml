@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: olp
+  flyway:
+    enabled: false
+
+  datasource:
+    mysql:
+      url: jdbc:mysql://localhost:3306
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    redis:
+      url: redis://localhost:6379
+      username: root
+      password: root
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html

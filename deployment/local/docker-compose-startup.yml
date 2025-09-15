@@ -1,0 +1,38 @@
+networks:
+  local-net:
+
+services:
+
+  mongoDb:
+    image: "mongo:${MongoDbVersion}"
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - local-net
+
+  mysql:
+    image: "mysql:${MySQLVersion}"
+    container_name: mysql
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=root'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./databases/sql:/docker-entrypoint-initdb.d:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - local-net
+
+  redis:
+    image: "redis:${RedisVersion}"
+    container_name: redis
+    ports:
+      - "6379:6379"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - local-net
