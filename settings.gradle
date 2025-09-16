@@ -1,1 +1,12 @@
-rootProject.name = 'olp'
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    mavenCentral()
+  }
+}
+
+rootProject.name = 'olp-root'
+
+// here you will define the modules and bind them in by need
+include ':olp'
+project(':olp').projectDir = file('modules/apps/olp')
