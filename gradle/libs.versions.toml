@@ -15,7 +15,6 @@ springGrpcVersion = "0.10.0"
 
 # spring boot starters
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "springBootVersion" }
-spring-boot-starter-elasticsearch = { module = "org.springframework.boot:spring-boot-starter-data-elasticsearch", version.ref = "springBootVersion" }
 spring-boot-starter-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "springBootVersion" }
 spring-boot-starter-mongodb = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", version.ref = "springBootVersion" }
 spring-boot-starter-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springBootVersion" }
@@ -27,14 +26,13 @@ spring-boot-starter-webSocket = { module = "org.springframework.boot:spring-boot
 spring-openApi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "openApiVersion" }
 
 [bundles]
+
 spring-boot-starter-web = [
     "spring-boot-starter-actuator",
     "spring-boot-starter-web",
     "spring-boot-starter-webSocket"
 ]
-
 spring-boot-starter-data = [
-    "spring-boot-starter-elasticsearch",
     "spring-boot-starter-jpa",
     "spring-boot-starter-mongodb",
     "spring-boot-starter-redis",

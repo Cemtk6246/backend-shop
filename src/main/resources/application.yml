@@ -12,6 +12,7 @@ spring:
       database: products
       username: root
       password: root
+      authentication-database: admin
 
   datasource:
     mysql:
