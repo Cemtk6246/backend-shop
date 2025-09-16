@@ -3,7 +3,6 @@ plugins {
   id 'org.jetbrains.kotlin.plugin.spring' version libs.versions.springKotlinVersion
   id 'org.springframework.boot' version libs.versions.springBootVersion
   id 'io.spring.dependency-management' version libs.versions.springDepManagementVersion
-  id 'com.google.protobuf' version libs.versions.protobufVersion
   id 'org.jetbrains.kotlin.plugin.jpa' version libs.versions.springKotlinVersion
 }
 
@@ -39,18 +38,19 @@ dependencies {
   // openApi
   implementation libs.spring.openApi.starter.webmvc.ui
 
-  implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
-  implementation 'io.grpc:grpc-services'
-  implementation 'org.flywaydb:flyway-core'
-  implementation 'org.flywaydb:flyway-database-postgresql'
-  implementation 'org.flywaydb:flyway-mysql'
+  implementation libs.jackson.module.kotlin
+  implementation libs.grpc.services
+  implementation libs.flyway.core
+  implementation libs.flyway.mysql
+
+  implementation libs.spring.grpc.server.web.starter
+  compileOnly libs.lombok
+  annotationProcessor libs.lombok
+
   implementation 'org.jetbrains.kotlin:kotlin-reflect'
-  implementation 'org.springframework.grpc:spring-grpc-server-web-spring-boot-starter'
-  compileOnly 'org.projectlombok:lombok'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
   runtimeOnly 'com.mysql:mysql-connector-j'
   runtimeOnly 'org.postgresql:postgresql'
-  annotationProcessor 'org.projectlombok:lombok'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
   testImplementation 'org.springframework.graphql:spring-graphql-test'
@@ -70,24 +70,6 @@ kotlin {
   }
 }
 
-protobuf {
-  protoc {
-    artifact = 'com.google.protobuf:protoc'
-  }
-  plugins {
-    grpc {
-      artifact = 'io.grpc:protoc-gen-grpc-java'
-    }
-  }
-  generateProtoTasks {
-    all()*.plugins {
-      grpc {
-        option '@generated=omit'
-      }
-    }
-  }
-}
-
 allOpen {
   annotation 'jakarta.persistence.Entity'
   annotation 'jakarta.persistence.MappedSuperclass'
@@ -96,4 +78,15 @@ allOpen {
 
 tasks.named('test') {
   useJUnitPlatform()
+}
+
+jar {
+  enabled = false
+  archiveClassifier = ''
+}
+
+bootJar {
+  enabled = true
+  archiveClassifier = ''
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

@@ -4,12 +4,15 @@ springKotlinVersion = "1.9.25"
 springBootVersion = "3.5.5"
 springDepManagementVersion = "1.1.7"
 protobufVersion = "0.9.4"
+jacksonKotlinVersion = "2.15.2"
+grpcVersion = "1.58.0"
+flywayVersion = "10.19.0"
+springGrpcVersion = "0.10.0"
+lombokVersion = "1.18.30"
+protocVersion = "21.12"
 
 # openApi Version
 openApiVersion = "2.6.0"
-
-# spring Grpc
-springGrpcVersion = "0.10.0"
 
 [libraries]
 
@@ -17,13 +20,20 @@ springGrpcVersion = "0.10.0"
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "springBootVersion" }
 spring-boot-starter-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "springBootVersion" }
 spring-boot-starter-mongodb = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", version.ref = "springBootVersion" }
-spring-boot-starter-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springBootVersion" }
 spring-boot-starter-graphQl = { module = "org.springframework.boot:spring-boot-starter-graphql", version.ref = "springBootVersion" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBootVersion" }
 spring-boot-starter-webSocket = { module = "org.springframework.boot:spring-boot-starter-websocket", version.ref = "springBootVersion" }
 
 # openApi
 spring-openApi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "openApiVersion" }
+
+# Additional libraries for hardcoded dependencies
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jacksonKotlinVersion" }
+grpc-services = { module = "io.grpc:grpc-services", version.ref = "grpcVersion" }
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flywayVersion" }
+flyway-mysql = { module = "org.flywaydb:flyway-mysql", version.ref = "flywayVersion" }
+spring-grpc-server-web-starter = { module = "org.springframework.grpc:spring-grpc-server-web-spring-boot-starter", version.ref = "springGrpcVersion" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombokVersion" }
 
 [bundles]
 
@@ -35,6 +45,5 @@ spring-boot-starter-web = [
 spring-boot-starter-data = [
     "spring-boot-starter-jpa",
     "spring-boot-starter-mongodb",
-    "spring-boot-starter-redis",
     "spring-boot-starter-graphQl"
 ]
