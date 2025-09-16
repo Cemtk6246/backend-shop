@@ -2,7 +2,17 @@ spring:
   application:
     name: olp
   flyway:
-    enabled: false
+    enabled: true
+    default-schema: OLP
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: products
+      username: root
+      password: root
+      authentication-database: admin
 
   datasource:
     mysql:
@@ -10,13 +20,11 @@ spring:
       username: root
       password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
-    redis:
-      url: redis://localhost:6379
-      username: root
-      password: root
 
 server:
   port: 8080
+  error:
+    include-message: always
 
 springdoc:
   api-docs:

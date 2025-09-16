@@ -1,5 +1,5 @@
 networks:
-  local-net:
+  local:
 
 services:
 
@@ -8,10 +8,17 @@ services:
     container_name: mongo_db
     ports:
       - "27017:27017"
+    environment:
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+      - 'MONGO_INITDB_ROOT_PASSWORD=root'
+    volumes:
+      - ./databases/nosql/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - local-net
+      - local
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/products --quiet
 
   mysql:
     image: "mysql:${MySQLVersion}"
@@ -25,14 +32,27 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - local-net
+      - local
+    healthcheck:
+      test: ["CMD", "mysql", "-h", "localhost", "-u", "root", "-proot", "-e", "SELECT 1"]
+      interval: 10s
+      start_period: 120s
+      timeout: 15s
+      retries: 10
 
-  redis:
-    image: "redis:${RedisVersion}"
-    container_name: redis
-    ports:
-      - "6379:6379"
+  olp:
+    image: olp:latest
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: local-docker
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - local-net
+      - local
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongoDb:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
