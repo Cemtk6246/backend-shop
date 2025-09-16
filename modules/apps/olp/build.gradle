@@ -1,11 +1,3 @@
-plugins {
-  id 'org.jetbrains.kotlin.jvm' version libs.versions.springKotlinVersion
-  id 'org.jetbrains.kotlin.plugin.spring' version libs.versions.springKotlinVersion
-  id 'org.springframework.boot' version libs.versions.springBootVersion
-  id 'io.spring.dependency-management' version libs.versions.springDepManagementVersion
-  id 'org.jetbrains.kotlin.plugin.jpa' version libs.versions.springKotlinVersion
-}
-
 group = 'own.little.project'
 version = '0.0.1-SNAPSHOT'
 description = 'olp'
