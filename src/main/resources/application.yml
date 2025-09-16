@@ -2,7 +2,16 @@ spring:
   application:
     name: olp
   flyway:
-    enabled: false
+    enabled: true
+    default-schema: OLP
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: products
+      username: root
+      password: root
 
   datasource:
     mysql:
@@ -17,6 +26,8 @@ spring:
 
 server:
   port: 8080
+  error:
+    include-message: always
 
 springdoc:
   api-docs:

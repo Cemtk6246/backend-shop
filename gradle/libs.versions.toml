@@ -8,6 +8,9 @@ protobufVersion = "0.9.4"
 # openApi Version
 openApiVersion = "2.6.0"
 
+# spring Grpc
+springGrpcVersion = "0.10.0"
+
 [libraries]
 
 # spring boot starters
@@ -20,9 +23,8 @@ spring-boot-starter-graphQl = { module = "org.springframework.boot:spring-boot-s
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBootVersion" }
 spring-boot-starter-webSocket = { module = "org.springframework.boot:spring-boot-starter-websocket", version.ref = "springBootVersion" }
 
-#openApi
+# openApi
 spring-openApi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "openApiVersion" }
-
 
 [bundles]
 spring-boot-starter-web = [
