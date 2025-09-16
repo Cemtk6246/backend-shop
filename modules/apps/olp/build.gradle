@@ -18,10 +18,6 @@ repositories {
   mavenCentral()
 }
 
-ext {
-  set('springGrpcVersion', "0.10.0")
-}
-
 dependencies {
   // spring dependencies starter
   implementation libs.bundles.spring.boot.starter.web
@@ -42,18 +38,9 @@ dependencies {
   implementation 'org.jetbrains.kotlin:kotlin-reflect'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
   runtimeOnly 'com.mysql:mysql-connector-j'
-  runtimeOnly 'org.postgresql:postgresql'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
-  testImplementation 'org.springframework.graphql:spring-graphql-test'
-  testImplementation 'org.springframework.grpc:spring-grpc-test'
   testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-dependencyManagement {
-  imports {
-    mavenBom "org.springframework.grpc:spring-grpc-dependencies:${springGrpcVersion}"
-  }
 }
 
 kotlin {
