@@ -1,0 +1,82 @@
+group = 'olp.cem.user'
+version = '0.0.1'
+description = 'user'
+
+sourceSets {
+    integTest {
+        compileClasspath += sourceSets.main.output + sourceSets.test.output
+        runtimeClasspath += output + compileClasspath
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    // spring dependencies starter
+    implementation libs.bundles.spring.boot.starter.web
+    implementation libs.bundles.spring.boot.starter.data
+
+    // openApi
+    implementation libs.spring.openApi.starter.webmvc.ui
+
+    implementation libs.jackson.module.kotlin
+    implementation libs.grpc.services
+
+    implementation libs.spring.grpc.server.web.starter
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll '-Xjsr305=strict'
+    }
+}
+
+allOpen {
+    annotation 'jakarta.persistence.Entity'
+    annotation 'jakarta.persistence.MappedSuperclass'
+    annotation 'jakarta.persistence.Embeddable'
+}
+
+jar {
+    enabled = false
+    archiveClassifier = ''
+}
+
+bootJar {
+    enabled = true
+    archiveClassifier = ''
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.register('integTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+    testClassesDirs = sourceSets.integTest.output.classesDirs
+    classpath = sourceSets.integTest.runtimeClasspath
+    shouldRunAfter test
+    useJUnitPlatform()
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

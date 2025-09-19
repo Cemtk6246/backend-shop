@@ -9,7 +9,11 @@ docker network rm local
 ./gradlew clean build
 ## clean up all old images of service
 docker image rm olp:latest
+docker image rm customflyway:latest
+
 ## create newest image of olp Dockerfiles
-docker build -t olp:latest ./../..
+docker build -t olp:latest ./../../modules/apps/user
+docker build -t customflyway:latest ./../../modules/apps/flyway
+
 ## run docker compose
-docker compose --env-file .env -f docker-compose-startup.yml up -d
+docker-compose --env-file .env -f docker-compose-startup.yml up -d

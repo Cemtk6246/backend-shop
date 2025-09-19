@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: olp
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: products
+      username: root
+      password: root
+      authentication-database: admin
+
+  datasource:
+    mysql:
+      url: jdbc:mysql://localhost:3306/OLP
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  error:
+    include-message: always
+  port: 9005
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html

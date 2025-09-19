@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    mysql:
+      url: jdbc:mysql://mysql:3306
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    default-schema: OLP

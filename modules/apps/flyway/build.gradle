@@ -1,0 +1,19 @@
+group = 'olp.cem.flyway'
+version = '0.0.1'
+description = 'flyway'
+
+dependencies {
+    implementation libs.spring.boot.starter.jpa
+    implementation libs.flyway.core
+    implementation libs.flyway.mysql
+
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}

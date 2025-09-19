@@ -55,4 +55,16 @@ services:
       mongoDb:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - "9005:9005"
+
+  flyway:
+    image: customflyway:latest
+    depends_on:
+      mysql:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - local
+    ports:
+      - "9006:9006"

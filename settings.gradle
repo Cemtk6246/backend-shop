@@ -1,1 +1,15 @@
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    mavenCentral()
+  }
+}
+
 rootProject.name = 'olp'
+
+// here you will define the modules and bind them in by need
+include ':user'
+project(':user').projectDir = file('modules/apps/user')
+
+include ':flyway'
+project(':flyway').projectDir = file('modules/apps/flyway')
