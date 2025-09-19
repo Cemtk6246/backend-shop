@@ -6,6 +6,11 @@ plugins {
   id 'org.jetbrains.kotlin.plugin.jpa' version libs.versions.springKotlinVersion apply false
 }
 
+allprojects {
+  repositories {
+    mavenCentral()
+  }
+}
 subprojects {
   apply plugin: 'org.jetbrains.kotlin.jvm'
   apply plugin: 'org.jetbrains.kotlin.plugin.spring'
@@ -16,17 +21,12 @@ subprojects {
   java {
     toolchain {
       languageVersion = JavaLanguageVersion.of(21)
-    }
   }
 
   configurations {
     compileOnly {
       extendsFrom annotationProcessor
     }
-  }
-
-  repositories {
-    mavenCentral()
   }
 
   kotlin {
@@ -55,8 +55,4 @@ subprojects {
     archiveClassifier = ''
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
   }
-}
-
-repositories {
-  mavenCentral()
 }

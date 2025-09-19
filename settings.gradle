@@ -5,11 +5,8 @@ pluginManagement {
   }
 }
 
-rootProject.name = 'olp'
+rootProject.name = 'olp-root'
 
 // here you will define the modules and bind them in by need
-include ':user'
-project(':user').projectDir = file('modules/apps/user')
-
-include ':flyway'
-project(':flyway').projectDir = file('modules/apps/flyway')
+include ':olp'
+project(':olp').projectDir = file('modules/apps/olp')
